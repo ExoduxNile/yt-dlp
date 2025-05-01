@@ -1321,7 +1321,6 @@ The only reliable way to check if a site is supported is to try it.
  - **Sexu**: (**Currently broken**)
  - **SeznamZpravy**
  - **SeznamZpravyArticle**
- - **Shahid**: [*shahid*](## "netrc machine")
  - **ShahidShow**
  - **SharePoint**
  - **ShareVideosEmbed**
