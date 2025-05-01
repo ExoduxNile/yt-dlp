@@ -2401,7 +2401,7 @@ class GenericIE(InfoExtractor):
         else:
             video_id = self._generic_id(url)
 
-        # Do not impersonate by default; see https://github.com/yt-dlp/yt-dlp/issues/11335
+        # Do not impersonate by default; see https://github.com/exoduxnile/yt-dlp/issues/11335
         impersonate = self._configuration_arg('impersonate', ['false'])
         if 'false' in impersonate:
             impersonate = None
@@ -2432,7 +2432,7 @@ class GenericIE(InfoExtractor):
                 self.cookiejar.clear(domain=cf_cookie_domain, path='/', name='__cf_bm')
             msg = 'Got HTTP Error 403 caused by Cloudflare anti-bot challenge; '
             if not self._downloader._impersonate_target_available(ImpersonateTarget()):
-                msg += ('see  https://github.com/yt-dlp/yt-dlp#impersonation  for '
+                msg += ('see  https://github.com/exoduxnile/yt-dlp#impersonation  for '
                         'how to install the required impersonation dependency, and ')
             raise ExtractorError(
                 f'{msg}try again with  --extractor-args "generic:impersonate"', expected=True)

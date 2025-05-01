@@ -601,7 +601,7 @@ def sanitize_open(filename, open_mode):
                 if sys.platform == 'win32':
                     # FIXME: An exclusive lock also locks the file from being read.
                     # Since windows locks are mandatory, don't lock the file on windows (for now).
-                    # Ref: https://github.com/yt-dlp/yt-dlp/issues/3124
+                    # Ref: https://github.com/exoduxnile/yt-dlp/issues/3124
                     raise LockingUnsupportedError
                 stream = locked_file(filename, open_mode, block=False).__enter__()
             except OSError:
@@ -848,12 +848,12 @@ class Popen(subprocess.Popen):
 
         # Force spawning independent subprocesses for exes bundled with PyInstaller>=6.10
         # Ref: https://pyinstaller.org/en/v6.10.0/CHANGES.html#incompatible-changes
-        #      https://github.com/yt-dlp/yt-dlp/issues/11259
+        #      https://github.com/exoduxnile/yt-dlp/issues/11259
         env['PYINSTALLER_RESET_ENVIRONMENT'] = '1'
 
         # Restore LD_LIBRARY_PATH when using PyInstaller
         # Ref: https://pyinstaller.org/en/v6.10.0/runtime-information.html#ld-library-path-libpath-considerations
-        #      https://github.com/yt-dlp/yt-dlp/issues/4573
+        #      https://github.com/exoduxnile/yt-dlp/issues/4573
         def _fix(key):
             orig = env.get(f'{key}_ORIG')
             if orig is None:
@@ -1475,7 +1475,7 @@ def write_string(s, out=None, encoding=None):
         s = re.sub(r'([\r\n]+)', r' \1', s)
 
     enc, buffer = None, out
-    # `mode` might be `None` (Ref: https://github.com/yt-dlp/yt-dlp/issues/8816)
+    # `mode` might be `None` (Ref: https://github.com/exoduxnile/yt-dlp/issues/8816)
     if 'b' in (getattr(out, 'mode', None) or ''):
         enc = encoding or preferredencoding()
     elif hasattr(out, 'buffer'):
@@ -1918,7 +1918,7 @@ def fix_xml_ampersands(xml_str):
 def setproctitle(title):
     assert isinstance(title, str)
 
-    # Workaround for https://github.com/yt-dlp/yt-dlp/issues/4541
+    # Workaround for https://github.com/exoduxnile/yt-dlp/issues/4541
     try:
         import ctypes
     except ImportError:
@@ -2052,9 +2052,9 @@ def strftime_or_none(timestamp, date_format='%Y%m%d', default=None):
     try:
         if isinstance(timestamp, (int, float)):  # unix timestamp
             # Using naive datetime here can break timestamp() in Windows
-            # Ref: https://github.com/yt-dlp/yt-dlp/issues/5185, https://github.com/python/cpython/issues/94414
+            # Ref: https://github.com/exoduxnile/yt-dlp/issues/5185, https://github.com/python/cpython/issues/94414
             # Also, dt.datetime.fromtimestamp breaks for negative timestamps
-            # Ref: https://github.com/yt-dlp/yt-dlp/issues/6706#issuecomment-1496842642
+            # Ref: https://github.com/exoduxnile/yt-dlp/issues/6706#issuecomment-1496842642
             datetime_object = (dt.datetime.fromtimestamp(0, dt.timezone.utc)
                                + dt.timedelta(seconds=timestamp))
         elif isinstance(timestamp, str):  # assume YYYYMMDD
@@ -3491,7 +3491,7 @@ def dfxp2srt(dfxp_data):
         def close(self):
             return self._out.strip()
 
-    # Fix UTF-8 encoded file wrongly marked as UTF-16. See https://github.com/yt-dlp/yt-dlp/issues/6543#issuecomment-1477169870
+    # Fix UTF-8 encoded file wrongly marked as UTF-16. See https://github.com/exoduxnile/yt-dlp/issues/6543#issuecomment-1477169870
     # This will not trigger false positives since only UTF-8 text is being replaced
     dfxp_data = dfxp_data.replace(b'encoding=\'UTF-16\'', b'encoding=\'UTF-8\'')
 
@@ -5087,7 +5087,7 @@ class _UnsafeExtensionError(Exception):
     Mitigation exception for uncommon/malicious file extensions
     This should be caught in YoutubeDL.py alongside a warning
 
-    Ref: https://github.com/yt-dlp/yt-dlp/security/advisories/GHSA-79w7-vh3h-8g4j
+    Ref: https://github.com/exoduxnile/yt-dlp/security/advisories/GHSA-79w7-vh3h-8g4j
     """
     ALLOWED_EXTENSIONS = frozenset([
         # internal
@@ -5598,7 +5598,7 @@ class FormatSorter:
         if format.get('preference') is None and format.get('ext') == 'flv' and re.match('[hx]265|he?vc?', format.get('vcodec') or ''):
             # HEVC-over-FLV is out-of-spec by FLV's original spec
             # ref. https://trac.ffmpeg.org/ticket/6389
-            # ref. https://github.com/yt-dlp/yt-dlp/pull/5821
+            # ref. https://github.com/exoduxnile/yt-dlp/pull/5821
             format['preference'] = -100
 
         # Determine missing bitrates

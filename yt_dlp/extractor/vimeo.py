@@ -182,7 +182,7 @@ class VimeoBaseInfoExtractor(InfoExtractor):
                             note=f'Downloading {cdn_name} m3u8 information',
                             fatal=False)
                         # m3u8 doesn't give audio bitrates; need to prioritize based on GROUP-ID
-                        # See: https://github.com/yt-dlp/yt-dlp/issues/10854
+                        # See: https://github.com/exoduxnile/yt-dlp/issues/10854
                         for f in fmts:
                             if mobj := re.search(rf'audio-({"|".join(QUALITIES)})', f['format_id']):
                                 f['quality'] = quality(mobj.group(1))
@@ -785,7 +785,7 @@ class VimeoIE(VimeoBaseInfoExtractor):
             'expected_warnings': ['Failed to parse XML: not well-formed'],
         },
         {
-            # chapters must be sorted, see: https://github.com/yt-dlp/yt-dlp/issues/5308
+            # chapters must be sorted, see: https://github.com/exoduxnile/yt-dlp/issues/5308
             'url': 'https://player.vimeo.com/video/756714419',
             'info_dict': {
                 'id': '756714419',

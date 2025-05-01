@@ -72,7 +72,7 @@ class AfreecaTVBaseIE(InfoExtractor):
         if not url_or_none(thumb_url):
             return None
         # Core would determine_ext as 'php' from the url, so we need to provide the real ext
-        # See: https://github.com/yt-dlp/yt-dlp/issues/11537
+        # See: https://github.com/exoduxnile/yt-dlp/issues/11537
         return [{'url': thumb_url, 'ext': 'jpg'}]
 
 

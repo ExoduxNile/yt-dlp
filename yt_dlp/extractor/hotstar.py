@@ -239,7 +239,7 @@ class HotStarIE(HotStarBaseIE):
         if not self.get_param('allow_unplayable_formats') and video_data.get('drmProtected'):
             self.report_drm(video_id)
 
-        # See https://github.com/yt-dlp/yt-dlp/issues/396
+        # See https://github.com/exoduxnile/yt-dlp/issues/396
         st = self._download_webpage_handle(f'{self._BASE_URL}/in', video_id)[1].headers.get('x-origin-date')
 
         geo_restricted = False

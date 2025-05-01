@@ -121,7 +121,7 @@ class WebsocketsRH(WebSocketRequestHandler):
 
     def close(self):
         # Remove the logging handler that contains a reference to our logger
-        # See: https://github.com/yt-dlp/yt-dlp/issues/8922
+        # See: https://github.com/exoduxnile/yt-dlp/issues/8922
         for name, handler in self.__logging_handlers.items():
             logging.getLogger(name).removeHandler(handler)
 

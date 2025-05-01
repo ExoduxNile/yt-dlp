@@ -143,7 +143,7 @@ class TestFormatSelection(unittest.TestCase):
         test('example-with-dashes', 'example-with-dashes')
         test('all', '2', '47', '45', 'example-with-dashes', '35')
         test('mergeall', '2+47+45+example-with-dashes+35', multi=True)
-        # See: https://github.com/yt-dlp/yt-dlp/pulls/8797
+        # See: https://github.com/exoduxnile/yt-dlp/pulls/8797
         test('7_a/worst', '35')
 
     def test_format_selection_audio(self):
@@ -1164,8 +1164,8 @@ class TestYoutubeDL(unittest.TestCase):
         test_selection({'playlist_items': '2-4,3-4,3'}, [2, 3, 4])
         test_selection({'playlist_items': '4,2'}, [4, 2])
 
-        # Tests for https://github.com/yt-dlp/yt-dlp/issues/720
-        # https://github.com/yt-dlp/yt-dlp/issues/302
+        # Tests for https://github.com/exoduxnile/yt-dlp/issues/720
+        # https://github.com/exoduxnile/yt-dlp/issues/302
         test_selection({'playlistreverse': True}, INDICES[::-1])
         test_selection({'playliststart': 2, 'playlistreverse': True}, INDICES[:0:-1])
         test_selection({'playlist_items': '2,4', 'playlistreverse': True}, [4, 2])

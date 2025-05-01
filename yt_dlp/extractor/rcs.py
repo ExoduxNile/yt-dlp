@@ -300,7 +300,7 @@ class RCSIE(RCSBaseIE):
             'uploader': 'DOVE Viaggi',
         },
     }, {
-        # only audio format https://github.com/yt-dlp/yt-dlp/issues/5683
+        # only audio format https://github.com/exoduxnile/yt-dlp/issues/5683
         'url': 'https://video.corriere.it/cronaca/audio-telefonata-il-papa-becciu-santita-lettera-che-mi-ha-inviato-condanna/b94c0d20-70c2-11ed-9572-e4b947a0ebd2',
         'md5': 'aaffb08d02f2ce4292a4654694c78150',
         'info_dict': {

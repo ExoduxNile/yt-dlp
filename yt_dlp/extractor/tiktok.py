@@ -569,7 +569,7 @@ class TikTokBaseIE(InfoExtractor):
                 'vcodec': 'none',
             })
 
-        # Filter out broken formats, see https://github.com/yt-dlp/yt-dlp/issues/11034
+        # Filter out broken formats, see https://github.com/exoduxnile/yt-dlp/issues/11034
         return [f for f in formats if urllib.parse.urlparse(f['url']).hostname != 'www.tiktok.com']
 
     def _parse_aweme_video_web(self, aweme_detail, webpage_url, video_id, extract_flat=False):

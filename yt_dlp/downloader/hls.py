@@ -29,7 +29,7 @@ class HlsFD(FragmentFD):
     FD_NAME = 'hlsnative'
 
     @staticmethod
-    def _has_drm(manifest):  # TODO: https://github.com/yt-dlp/yt-dlp/pull/5039
+    def _has_drm(manifest):  # TODO: https://github.com/exoduxnile/yt-dlp/pull/5039
         return bool(re.search('|'.join((
             r'#EXT-X-(?:SESSION-)?KEY:.*?URI="skd://',  # Apple FairPlay
             r'#EXT-X-(?:SESSION-)?KEY:.*?KEYFORMAT="com\.apple\.streamingkeydelivery"',  # Apple FairPlay

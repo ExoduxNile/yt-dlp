@@ -822,7 +822,7 @@ class SoundcloudPagedPlaylistBaseIE(SoundcloudBaseIE):
                     break
                 except ExtractorError as e:
                     # Downloading page may result in intermittent 502 HTTP error
-                    # See https://github.com/yt-dlp/yt-dlp/issues/872
+                    # See https://github.com/exoduxnile/yt-dlp/issues/872
                     if not isinstance(e.cause, HTTPError) or e.cause.status != 502:
                         raise
                     retry.error = e

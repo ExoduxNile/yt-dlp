@@ -1066,7 +1066,7 @@ class YoutubeDL:
         text = str(text)
         if test_encoding:
             original_text = text
-            # handle.encoding can be None. See https://github.com/yt-dlp/yt-dlp/issues/2711
+            # handle.encoding can be None. See https://github.com/exoduxnile/yt-dlp/issues/2711
             encoding = self.params.get('encoding') or getattr(handle, 'encoding', None) or 'ascii'
             text = text.encode(encoding, 'ignore').decode(encoding)
             if fallback is not None and text != original_text:
@@ -1322,7 +1322,7 @@ class YoutubeDL:
             if mdict['strf_format']:
                 value = strftime_or_none(value, mdict['strf_format'].replace('\\,', ','))
 
-            # XXX: Workaround for https://github.com/yt-dlp/yt-dlp/issues/4485
+            # XXX: Workaround for https://github.com/exoduxnile/yt-dlp/issues/4485
             if sanitize and value == '':
                 value = None
             return value
@@ -1727,7 +1727,7 @@ class YoutubeDL:
         """Loads cookies from a `Cookie` header
 
         This tries to work around the security vulnerability of passing cookies to every domain.
-        See: https://github.com/yt-dlp/yt-dlp/security/advisories/GHSA-v8mc-9377-rwjj
+        See: https://github.com/exoduxnile/yt-dlp/security/advisories/GHSA-v8mc-9377-rwjj
 
         @param data         The Cookie header as string to load the cookies from
         @param autoscope    If `False`, scope cookies using Set-Cookie syntax and error for cookie without domains
@@ -2075,7 +2075,7 @@ class YoutubeDL:
             })
 
             if self._match_entry(entry_copy, incomplete=True) is not None:
-                # For compatabilty with youtube-dl. See https://github.com/yt-dlp/yt-dlp/issues/4369
+                # For compatabilty with youtube-dl. See https://github.com/exoduxnile/yt-dlp/issues/4369
                 resolved_entries[i] = (playlist_index, NO_DEFAULT)
                 continue
 
@@ -2237,7 +2237,7 @@ class YoutubeDL:
             evaluate_formats = lambda spec: self._select_formats(formats, self.build_format_selector(spec))
             if evaluate_formats('b/bv+ba') != evaluate_formats('bv*+ba/b'):
                 self.report_warning('ffmpeg not found. The downloaded format may not be the best available. '
-                                    'Installing ffmpeg is strongly recommended: https://github.com/yt-dlp/yt-dlp#dependencies')
+                                    'Installing ffmpeg is strongly recommended: https://github.com/exoduxnile/yt-dlp#dependencies')
 
         compat = (self.params.get('allow_multiple_audio_streams')
                   or 'format-spec' in self.params['compat_opts'])
@@ -2558,7 +2558,7 @@ class YoutubeDL:
 
         # HACK: Python 3.12 changed the underlying parser, rendering '7_a' invalid
         #       Prefix numbers with random letters to avoid it being classified as a number
-        #       See: https://github.com/yt-dlp/yt-dlp/pulls/8797
+        #       See: https://github.com/exoduxnile/yt-dlp/pulls/8797
         # TODO: Implement parser not reliant on tokenize.tokenize
         prefix = ''.join(random.choices(string.ascii_letters, k=32))
         stream = io.BytesIO(re.sub(r'\d[_\d]*', rf'{prefix}\g<0>', format_spec).encode())
@@ -2600,7 +2600,7 @@ class YoutubeDL:
             self._load_cookies(res.get('Cookie'), autoscope=info_dict['url'])  # compat
             self._load_cookies(info_dict.get('cookies'), autoscope=False)
         # The `Cookie` header is removed to prevent leaks and unscoped cookies.
-        # See: https://github.com/yt-dlp/yt-dlp/security/advisories/GHSA-v8mc-9377-rwjj
+        # See: https://github.com/exoduxnile/yt-dlp/security/advisories/GHSA-v8mc-9377-rwjj
         res.pop('Cookie', None)
         cookies = self.cookiejar.get_cookies_for_url(info_dict['url'])
         if cookies:
@@ -2926,7 +2926,7 @@ class YoutubeDL:
                 if ambigious_id:
                     fmt['format_id'] = f'{format_id}-{i}'
                 # Ensure there is no conflict between id and ext in format selection
-                # See https://github.com/yt-dlp/yt-dlp/issues/1282
+                # See https://github.com/exoduxnile/yt-dlp/issues/1282
                 if fmt['format_id'] != fmt['ext'] and fmt['format_id'] in common_exts:
                     fmt['format_id'] = 'f{}'.format(fmt['format_id'])
 

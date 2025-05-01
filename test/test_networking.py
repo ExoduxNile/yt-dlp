@@ -297,7 +297,7 @@ class TestRequestHandlerBase:
         cls.http_port = http_server_port(cls.http_httpd)
         cls.http_server_thread = threading.Thread(target=cls.http_httpd.serve_forever)
         # FIXME: we should probably stop the http server thread after each test
-        # See: https://github.com/yt-dlp/yt-dlp/pull/7094#discussion_r1199746041
+        # See: https://github.com/exoduxnile/yt-dlp/pull/7094#discussion_r1199746041
         cls.http_server_thread.daemon = True
         cls.http_server_thread.start()
 
@@ -404,7 +404,7 @@ class TestHTTPRequestHandler(TestRequestHandlerBase):
     @pytest.mark.parametrize('path', [
         '/a/b/./../../headers',
         '/redirect_dotsegments',
-        # https://github.com/yt-dlp/yt-dlp/issues/9020
+        # https://github.com/exoduxnile/yt-dlp/issues/9020
         '/redirect_dotsegments_absolute',
     ])
     def test_remove_dot_segments(self, handler, path):
@@ -608,7 +608,7 @@ class TestHTTPRequestHandler(TestRequestHandlerBase):
     def test_source_address(self, handler):
         source_address = f'127.0.0.{random.randint(5, 255)}'
         # on some systems these loopback addresses we need for testing may not be available
-        # see: https://github.com/yt-dlp/yt-dlp/issues/8890
+        # see: https://github.com/exoduxnile/yt-dlp/issues/8890
         verify_address_availability(source_address)
         with handler(source_address=source_address) as rh:
             data = validate_and_send(
@@ -823,7 +823,7 @@ class TestRequestHandlerMisc:
     def test_remove_logging_handler(self, handler, logger_name):
         # Ensure any logging handlers, which may contain a YoutubeDL instance,
         # are removed when we close the request handler
-        # See: https://github.com/yt-dlp/yt-dlp/issues/8922
+        # See: https://github.com/exoduxnile/yt-dlp/issues/8922
         logging_handlers = logging.getLogger(logger_name).handlers
         before_count = len(logging_handlers)
         rh = handler()

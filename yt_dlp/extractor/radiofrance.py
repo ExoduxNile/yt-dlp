@@ -133,7 +133,7 @@ class FranceCultureIE(RadioFranceBaseIE):
         video_id, display_id = self._match_valid_url(url).group('id', 'display_id')
         webpage = self._download_webpage(url, display_id)
 
-        # _search_json_ld doesn't correctly handle this. See https://github.com/yt-dlp/yt-dlp/pull/3874#discussion_r891903846
+        # _search_json_ld doesn't correctly handle this. See https://github.com/exoduxnile/yt-dlp/pull/3874#discussion_r891903846
         video_data = self._search_json('', webpage, 'audio data', display_id, contains_pattern=r'{\s*"@type"\s*:\s*"AudioObject".+}')
 
         return {

@@ -2122,7 +2122,7 @@ Line 1
         self.assertEqual(set(headers4.sensitive().items()), {('ytdl-test', 'data;')})
 
         # common mistake: strip whitespace from values
-        # https://github.com/yt-dlp/yt-dlp/issues/8729
+        # https://github.com/exoduxnile/yt-dlp/issues/8729
         headers5 = HTTPHeaderDict({'ytdl-test': ' data; '})
         self.assertEqual(set(headers5.items()), {('Ytdl-Test', 'data;')})
         self.assertEqual(set(headers5.sensitive().items()), {('ytdl-test', 'data;')})

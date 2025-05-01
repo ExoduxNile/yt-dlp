@@ -573,7 +573,7 @@ class YoutubeTabBaseInfoExtractor(YoutubeBaseInfoExtractor):
             # In the case only a continuation is returned, try to follow it.
             # We extract this after trying to extract non-continuation items as otherwise this
             # may be prioritized over other continuations.
-            # see: https://github.com/yt-dlp/yt-dlp/issues/12933
+            # see: https://github.com/exoduxnile/yt-dlp/issues/12933
             continuation = continuation or self._extract_continuation({'contents': [continuation_item]})
 
             if not continuation and not video_items_renderer:
@@ -627,7 +627,7 @@ class YoutubeTabBaseInfoExtractor(YoutubeBaseInfoExtractor):
             'header', 'pageHeaderRenderer', 'content', 'pageHeaderViewModel', {dict}))
 
         # We can get the uncropped banner/avatar by replacing the crop params with '=s0'
-        # See: https://github.com/yt-dlp/yt-dlp/issues/2237#issuecomment-1013694714
+        # See: https://github.com/exoduxnile/yt-dlp/issues/2237#issuecomment-1013694714
         def _get_uncropped(url):
             return url_or_none((url or '').split('=')[0] + '=s0')
 
@@ -888,7 +888,7 @@ class YoutubeTabBaseInfoExtractor(YoutubeBaseInfoExtractor):
                 break
 
             # Sometimes youtube returns a webpage with incomplete ytInitialData
-            # See: https://github.com/yt-dlp/yt-dlp/issues/116
+            # See: https://github.com/exoduxnile/yt-dlp/issues/116
             if not traverse_obj(data, 'contents', 'currentVideoEndpoint', 'onResponseReceivedActions'):
                 retry.error = ExtractorError('Incomplete yt initial data received')
                 data = None
@@ -2055,7 +2055,7 @@ class YoutubeTabIE(YoutubeTabBaseInfoExtractor):
                      'mark fischbach'],
         },
     }, {
-        # https://github.com/yt-dlp/yt-dlp/issues/12933
+        # https://github.com/exoduxnile/yt-dlp/issues/12933
         'note': 'streams tab, some scheduled streams. Empty intermediate response with only continuation - must follow',
         'url': 'https://www.youtube.com/@sbcitygov/streams',
         'playlist_mincount': 150,
@@ -2163,7 +2163,7 @@ class YoutubeTabIE(YoutubeTabBaseInfoExtractor):
         data, ytcfg = self._extract_data(url, display_id)
 
         # YouTube may provide a non-standard redirect to the regional channel
-        # See: https://github.com/yt-dlp/yt-dlp/issues/2694
+        # See: https://github.com/exoduxnile/yt-dlp/issues/2694
         # https://support.google.com/youtube/answer/2976814#zippy=,conditional-redirects
         redirect_url = traverse_obj(
             data, ('onResponseReceivedActions', ..., 'navigateAction', 'endpoint', 'commandMetadata', 'webCommandMetadata', 'url'), get_all=False)

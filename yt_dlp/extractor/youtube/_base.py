@@ -149,7 +149,7 @@ INNERTUBE_CLIENTS = {
         'REQUIRE_JS_PLAYER': False,
     },
     # mweb has 'ultralow' formats
-    # See: https://github.com/yt-dlp/yt-dlp/pull/557
+    # See: https://github.com/exoduxnile/yt-dlp/pull/557
     'mweb': {
         'INNERTUBE_CONTEXT': {
             'client': {
@@ -417,7 +417,7 @@ class YoutubeBaseInfoExtractor(InfoExtractor):
 
     _NETRC_MACHINE = 'youtube'
 
-    _COOKIE_HOWTO_WIKI_URL = 'https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies'
+    _COOKIE_HOWTO_WIKI_URL = 'https://github.com/exoduxnile/yt-dlp/wiki/Extractors#exporting-youtube-cookies'
 
     def ucid_or_none(self, ucid):
         return self._search_regex(rf'^({self._YT_CHANNEL_UCID_RE})$', ucid, 'UC-id', default=None)
@@ -569,7 +569,7 @@ class YoutubeBaseInfoExtractor(InfoExtractor):
 
         # Sometimes SAPISID cookie isn't present but __Secure-3PAPISID is.
         # YouTube also falls back to __Secure-3PAPISID if SAPISID is missing.
-        # See: https://github.com/yt-dlp/yt-dlp/issues/393
+        # See: https://github.com/exoduxnile/yt-dlp/issues/393
 
         return yt_sapisid or yt_3papisid, yt_1papisid, yt_3papisid
 
@@ -651,7 +651,7 @@ class YoutubeBaseInfoExtractor(InfoExtractor):
     def _extract_session_index(*data):
         """
         Index of current account in account list.
-        See: https://github.com/yt-dlp/yt-dlp/pull/519
+        See: https://github.com/exoduxnile/yt-dlp/pull/519
         """
         for ytcfg in data:
             session_index = int_or_none(try_get(ytcfg, lambda x: x['SESSION_INDEX']))
@@ -977,7 +977,7 @@ class YoutubeBaseInfoExtractor(InfoExtractor):
                 if not thumbnail_url:
                     continue
                 # Sometimes youtube gives a wrong thumbnail URL. See:
-                # https://github.com/yt-dlp/yt-dlp/issues/233
+                # https://github.com/exoduxnile/yt-dlp/issues/233
                 # https://github.com/ytdl-org/youtube-dl/issues/28023
                 if 'maxresdefault' in thumbnail_url:
                     thumbnail_url = thumbnail_url.split('?')[0]
@@ -1069,7 +1069,7 @@ class YoutubeBaseInfoExtractor(InfoExtractor):
                 # Downloading page may result in intermittent 5xx HTTP error
                 # Sometimes a 404 is also received. See: https://github.com/ytdl-org/youtube-dl/issues/28289
                 # We also want to catch all other network exceptions since errors in later pages can be troublesome
-                # See https://github.com/yt-dlp/yt-dlp/issues/507#issuecomment-880188210
+                # See https://github.com/exoduxnile/yt-dlp/issues/507#issuecomment-880188210
                 if e.cause.status not in (403, 429):
                     main_rm.error = e
                     next(main_retries)
@@ -1080,7 +1080,7 @@ class YoutubeBaseInfoExtractor(InfoExtractor):
                 self._extract_and_report_alerts(response, only_once=True)
             except ExtractorError as e:
                 # YouTube's servers may return errors we want to retry on in a 200 OK response
-                # See: https://github.com/yt-dlp/yt-dlp/issues/839
+                # See: https://github.com/exoduxnile/yt-dlp/issues/839
                 if 'unknown error' in e.msg.lower():
                     main_rm.error = e
                     next(main_retries)

@@ -147,7 +147,7 @@ class PatreonIE(PatreonBaseIE):
         },
         'skip': 'Patron-only content',
     }, {
-        # m3u8 video (https://github.com/yt-dlp/yt-dlp/issues/2277)
+        # m3u8 video (https://github.com/exoduxnile/yt-dlp/issues/2277)
         'url': 'https://www.patreon.com/posts/video-sketchbook-32452882',
         'info_dict': {
             'id': '32452882',
@@ -309,7 +309,7 @@ class PatreonIE(PatreonBaseIE):
                 ext = mimetype2ext(media_attributes.get('mimetype'))
 
                 # if size_bytes is None, this media file is likely unavailable
-                # See: https://github.com/yt-dlp/yt-dlp/issues/4608
+                # See: https://github.com/exoduxnile/yt-dlp/issues/4608
                 size_bytes = int_or_none(media_attributes.get('size_bytes'))
                 if download_url and ext in KNOWN_EXTENSIONS and size_bytes is not None:
                     idx += 1

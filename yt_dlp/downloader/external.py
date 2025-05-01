@@ -284,7 +284,7 @@ class Aria2cFD(ExternalFD):
         return fn if os.path.isabs(fn) else f'.{os.path.sep}{fn}'
 
     def _call_downloader(self, tmpfilename, info_dict):
-        # FIXME: Disabled due to https://github.com/yt-dlp/yt-dlp/issues/5931
+        # FIXME: Disabled due to https://github.com/exoduxnile/yt-dlp/issues/5931
         if False and 'no-external-downloader-progress' not in self.params.get('compat_opts', []):
             info_dict['__rpc'] = {
                 'port': find_available_port() or 19190,
@@ -323,7 +323,7 @@ class Aria2cFD(ExternalFD):
         # aria2c strips out spaces from the beginning/end of filenames and paths.
         # We work around this issue by adding a "./" to the beginning of the
         # filename and relative path, and adding a "/" at the end of the path.
-        # See: https://github.com/yt-dlp/yt-dlp/issues/276
+        # See: https://github.com/exoduxnile/yt-dlp/issues/276
         # https://github.com/ytdl-org/youtube-dl/issues/20312
         # https://github.com/aria2/aria2/issues/1373
         dn = os.path.dirname(tmpfilename)

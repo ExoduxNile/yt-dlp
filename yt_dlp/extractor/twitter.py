@@ -1414,7 +1414,7 @@ class TwitterIE(TwitterBaseIE):
                 'thumbnails': thumbnails,
                 'view_count': traverse_obj(media, ('mediaStats', 'viewCount', {int_or_none})),  # No longer available
                 'duration': float_or_none(traverse_obj(media, ('video_info', 'duration_millis')), 1000),
-                # Prioritize m3u8 formats for compat, see https://github.com/yt-dlp/yt-dlp/issues/8117
+                # Prioritize m3u8 formats for compat, see https://github.com/exoduxnile/yt-dlp/issues/8117
                 '_format_sort_fields': ('res', 'proto:m3u8', 'br', 'size'),  # http format codec is unknown
             }
 
@@ -1713,7 +1713,7 @@ class TwitterSpacesIE(TwitterBaseIE):
         },
         'params': {'skip_download': 'm3u8'},
     }, {
-        # Needs ffmpeg as downloader, see: https://github.com/yt-dlp/yt-dlp/issues/7536
+        # Needs ffmpeg as downloader, see: https://github.com/exoduxnile/yt-dlp/issues/7536
         'url': 'https://twitter.com/i/spaces/1eaKbrQbjoRKX',
         'info_dict': {
             'id': '1eaKbrQbjoRKX',

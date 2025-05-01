@@ -356,7 +356,7 @@ class FacebookIE(InfoExtractor):
         'url': 'https://www.facebook.com/watch/?v=647537299265662',
         'only_matching': True,
     }, {
-        # FIXME: https://github.com/yt-dlp/yt-dlp/issues/542
+        # FIXME: https://github.com/exoduxnile/yt-dlp/issues/542
         # data.node.comet_sections.content.story.attachments[].style_type_renderer.attachment.all_subattachments.nodes[].media
         'url': 'https://www.facebook.com/PankajShahLondon/posts/10157667649866271',
         'info_dict': {

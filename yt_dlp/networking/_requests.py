@@ -216,7 +216,7 @@ class RequestsSession(requests.sessions.Session):
         prepared_request.method = new_method
 
         # Requests fails to resolve dot segments on absolute redirect locations
-        # See: https://github.com/yt-dlp/yt-dlp/issues/9020
+        # See: https://github.com/exoduxnile/yt-dlp/issues/9020
         prepared_request.url = normalize_url(prepared_request.url)
 
     def rebuild_auth(self, prepared_request, response):
@@ -290,7 +290,7 @@ class RequestsRH(RequestHandler, InstanceStoreMixin):
     def close(self):
         self._clear_instances()
         # Remove the logging handler that contains a reference to our logger
-        # See: https://github.com/yt-dlp/yt-dlp/issues/8922
+        # See: https://github.com/exoduxnile/yt-dlp/issues/8922
         logging.getLogger('urllib3').removeHandler(self.__logging_handler)
 
     def _check_extensions(self, extensions):

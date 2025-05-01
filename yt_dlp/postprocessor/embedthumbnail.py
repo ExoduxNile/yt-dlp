@@ -175,7 +175,7 @@ class EmbedThumbnailPP(FFmpegPostProcessor):
 
             # Method 3: Use ffmpeg+ffprobe
             # Thumbnails attached using this method doesn't show up as cover in some cases
-            # See https://github.com/yt-dlp/yt-dlp/issues/2125, https://github.com/yt-dlp/yt-dlp/issues/411
+            # See https://github.com/exoduxnile/yt-dlp/issues/2125, https://github.com/exoduxnile/yt-dlp/issues/411
             if not success:
                 success = True
                 try:

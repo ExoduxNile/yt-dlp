@@ -28,7 +28,7 @@ def compat_ord(c):
 
 
 # Python 3.8+ does not honor %HOME% on windows, but this breaks compatibility with youtube-dl
-# See https://github.com/yt-dlp/yt-dlp/issues/792
+# See https://github.com/exoduxnile/yt-dlp/issues/792
 # https://docs.python.org/3/library/os.path.html#os.path.expanduser
 if os.name in ('nt', 'ce'):
     def compat_expanduser(path):

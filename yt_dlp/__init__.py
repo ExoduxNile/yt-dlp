@@ -701,7 +701,7 @@ def get_postprocessors(opts):
     # Deprecated
     # This should be above EmbedThumbnail since sponskrub removes the thumbnail attachment
     # but must be below EmbedSubtitle and FFmpegMetadata
-    # See https://github.com/yt-dlp/yt-dlp/issues/204 , https://github.com/faissaloo/SponSkrub/issues/29
+    # See https://github.com/exoduxnile/yt-dlp/issues/204 , https://github.com/faissaloo/SponSkrub/issues/29
     # If opts.sponskrub is None, sponskrub is used, but it silently fails if the executable can't be found
     if opts.sponskrub is not False:
         yield {
@@ -986,7 +986,7 @@ def _real_main(argv=None):
         return
 
     # We may need ffmpeg_location without having access to the YoutubeDL instance
-    # See https://github.com/yt-dlp/yt-dlp/issues/2191
+    # See https://github.com/exoduxnile/yt-dlp/issues/2191
     if opts.ffmpeg_location:
         FFmpegPostProcessor._ffmpeg_location.set(opts.ffmpeg_location)
 
@@ -1074,7 +1074,7 @@ def _real_main(argv=None):
                     print(parser._generate_error_message(
                         'Do not double-click the executable, instead call it from a command line.\n'
                         'Please read the README for further information on how to use yt-dlp: '
-                        'https://github.com/yt-dlp/yt-dlp#readme'))
+                        'https://github.com/exoduxnile/yt-dlp#readme'))
                     msvcrt.getch()
                     _exit(2)
             parser.error(

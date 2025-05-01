@@ -402,7 +402,7 @@ class ARDBetaMediathekIE(InfoExtractor):
             display_id, query=query, headers=headers)
 
         # For user convenience we use the old contentId instead of the longer crid
-        # Ref: https://github.com/yt-dlp/yt-dlp/issues/8731#issuecomment-1874398283
+        # Ref: https://github.com/exoduxnile/yt-dlp/issues/8731#issuecomment-1874398283
         old_id = traverse_obj(page_data, ('tracking', 'atiCustomVars', 'contentId', {int}))
         if old_id is not None:
             video_id = str(old_id)

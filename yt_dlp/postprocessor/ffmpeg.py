@@ -220,7 +220,7 @@ class FFmpegPostProcessor(PostProcessor):
     def stream_copy_opts(copy=True, *, ext=None):
         yield from ('-map', '0')
         # Don't copy Apple TV chapters track, bin_data
-        # See https://github.com/yt-dlp/yt-dlp/issues/2, #19042, #19024, https://trac.ffmpeg.org/ticket/6016
+        # See https://github.com/exoduxnile/yt-dlp/issues/2, #19042, #19024, https://trac.ffmpeg.org/ticket/6016
         yield from ('-dn', '-ignore_unknown')
         if copy:
             yield from ('-c', 'copy')
@@ -606,7 +606,7 @@ class FFmpegEmbedSubtitlePP(FFmpegPostProcessor):
 
         # Disabled temporarily. There needs to be a way to override this
         # in case of duration actually mismatching in extractor
-        # See: https://github.com/yt-dlp/yt-dlp/issues/1870, https://github.com/yt-dlp/yt-dlp/issues/1385
+        # See: https://github.com/exoduxnile/yt-dlp/issues/1870, https://github.com/exoduxnile/yt-dlp/issues/1385
         '''
         if info.get('duration') and not info.get('__real_download') and self._duration_mismatch(
                 self._get_real_video_duration(filename, False), info['duration']):

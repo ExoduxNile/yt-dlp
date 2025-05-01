@@ -109,7 +109,7 @@ class ITVIE(InfoExtractor):
     def _get_subtitles(self, video_id, variants, ios_playlist_url, headers, *args, **kwargs):
         subtitles = {}
         # Prefer last matching featureset
-        # See: https://github.com/yt-dlp/yt-dlp/issues/986
+        # See: https://github.com/exoduxnile/yt-dlp/issues/986
         platform_tag_subs, featureset_subs = next(
             ((platform_tag, featureset)
              for platform_tag, featuresets in reversed(list(variants.items())) for featureset in featuresets
@@ -138,7 +138,7 @@ class ITVIE(InfoExtractor):
             try_get(params, lambda x: x['data-video-variants'], str) or '{}',
             video_id, fatal=False)
         # Prefer last matching featureset
-        # See: https://github.com/yt-dlp/yt-dlp/issues/986
+        # See: https://github.com/exoduxnile/yt-dlp/issues/986
         platform_tag_video, featureset_video = next(
             ((platform_tag, featureset)
              for platform_tag, featuresets in reversed(list(variants.items())) for featureset in featuresets

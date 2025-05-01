@@ -28,10 +28,10 @@ def ssl_load_certs(context: ssl.SSLContext, use_certifi=True):
         try:
             context.load_default_certs()
         # Work around the issue in load_default_certs when there are bad certificates. See:
-        # https://github.com/yt-dlp/yt-dlp/issues/1060,
+        # https://github.com/exoduxnile/yt-dlp/issues/1060,
         # https://bugs.python.org/issue35665, https://bugs.python.org/issue45312
         except ssl.SSLError:
-            # enum_certificates is not present in mingw python. See https://github.com/yt-dlp/yt-dlp/issues/1151
+            # enum_certificates is not present in mingw python. See https://github.com/exoduxnile/yt-dlp/issues/1151
             if sys.platform == 'win32' and hasattr(ssl, 'enum_certificates'):
                 for storename in ('CA', 'ROOT'):
                     ssl_load_windows_store_certs(context, storename)
@@ -128,7 +128,7 @@ def make_ssl_context(
 
     # Some servers may reject requests if ALPN extension is not sent. See:
     # https://github.com/python/cpython/issues/85140
-    # https://github.com/yt-dlp/yt-dlp/issues/3878
+    # https://github.com/exoduxnile/yt-dlp/issues/3878
     with contextlib.suppress(NotImplementedError):
         context.set_alpn_protocols(['http/1.1'])
     if verify:
@@ -146,11 +146,11 @@ def make_ssl_context(
         # untested on older versions, we only apply this to OpenSSL 1.1.1+ to be safe.
         # LibreSSL is excluded until further investigation due to cipher support issues [5][6].
         # 1. https://github.com/python/cpython/commit/e983252b516edb15d4338b0a47631b59ef1e2536
-        # 2. https://github.com/yt-dlp/yt-dlp/issues/4627
-        # 3. https://github.com/yt-dlp/yt-dlp/pull/5294
+        # 2. https://github.com/exoduxnile/yt-dlp/issues/4627
+        # 3. https://github.com/exoduxnile/yt-dlp/pull/5294
         # 4. https://peps.python.org/pep-0644/
         # 5. https://peps.python.org/pep-0644/#libressl-support
-        # 6. https://github.com/yt-dlp/yt-dlp/commit/5b9f253fa0aee996cf1ed30185d4b502e00609c4#commitcomment-89054368
+        # 6. https://github.com/exoduxnile/yt-dlp/commit/5b9f253fa0aee996cf1ed30185d4b502e00609c4#commitcomment-89054368
         context.set_ciphers(
             '@SECLEVEL=2:ECDH+AESGCM:ECDH+CHACHA20:ECDH+AES:DHE+AES:!aNULL:!eNULL:!aDSS:!SHA1:!AESCCM')
         context.minimum_version = ssl.TLSVersion.TLSv1_2

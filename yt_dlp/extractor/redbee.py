@@ -300,7 +300,7 @@ class RTBFIE(RedBeeBaseIE):
 
         # The old api still returns m3u8 and mpd manifest for livestreams, but these are 'fake'
         # since all they contain is a 20s video that is completely unrelated.
-        # https://github.com/yt-dlp/yt-dlp/issues/4656#issuecomment-1214461092
+        # https://github.com/exoduxnile/yt-dlp/issues/4656#issuecomment-1214461092
         m3u8_url = None if data.get('isLive') else traverse_obj(data, 'urlHlsAes128', 'urlHls')
         if m3u8_url:
             fmts, subs = self._extract_m3u8_formats_and_subtitles(

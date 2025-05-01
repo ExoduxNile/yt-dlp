@@ -1457,7 +1457,7 @@ class AdobePassIE(InfoExtractor):  # XXX: Conventionally, base classes should en
                             'redirect_url': url,
                         }, headers={
                             # yt-dlp's default user-agent is usually too old for Comcast_SSO
-                            # See: https://github.com/yt-dlp/yt-dlp/issues/10848
+                            # See: https://github.com/exoduxnile/yt-dlp/issues/10848
                             'User-Agent': self._MODERN_USER_AGENT,
                         } if mso_id == 'Comcast_SSO' else None)
                 elif not self._cookies_passed:

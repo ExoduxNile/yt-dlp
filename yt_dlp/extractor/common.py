@@ -580,7 +580,7 @@ class InfoExtractor:
 
     def _login_hint(self, method=NO_DEFAULT, netrc=None):
         password_hint = f'--username and --password, --netrc-cmd, or --netrc ({netrc or self._NETRC_MACHINE}) to provide account credentials'
-        cookies_hint = 'See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies'
+        cookies_hint = 'See  https://github.com/exoduxnile/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies'
         return {
             None: '',
             'any': f'Use --cookies, --cookies-from-browser, {password_hint}. {cookies_hint}',
@@ -894,7 +894,7 @@ class InfoExtractor:
             message += (
                 'no impersonate target is available' if not str(impersonate)
                 else f'none of these impersonate targets are available: "{", ".join(map(str, requested_targets))}"')
-            info_msg = ('see  https://github.com/yt-dlp/yt-dlp#impersonation  '
+            info_msg = ('see  https://github.com/exoduxnile/yt-dlp#impersonation  '
                         'for information on installing the required dependencies')
             if require_impersonation:
                 raise ExtractorError(f'{message}; {info_msg}', expected=True)
@@ -1404,7 +1404,7 @@ class InfoExtractor:
         self.write_debug(f'Using netrc for {netrc_machine} authentication')
 
         # compat: <=py3.10: netrc cannot parse tokens as empty strings, will return `""` instead
-        # Ref: https://github.com/yt-dlp/yt-dlp/issues/11413
+        # Ref: https://github.com/exoduxnile/yt-dlp/issues/11413
         #      https://github.com/python/cpython/commit/15409c720be0503131713e3d3abc1acd0da07378
         if sys.version_info < (3, 11):
             return tuple(x if x != '""' else '' for x in info[::2])
@@ -2159,7 +2159,7 @@ class InfoExtractor:
                 # According to RFC 8216 §4.3.4.2.1, URI is REQUIRED in the
                 # EXT-X-MEDIA tag if the media type is SUBTITLES.
                 # However, lack of URI has been spotted in the wild.
-                # e.g. NebulaIE; see https://github.com/yt-dlp/yt-dlp/issues/339
+                # e.g. NebulaIE; see https://github.com/exoduxnile/yt-dlp/issues/339
                 if not media.get('URI'):
                     return
                 url = format_url(media['URI'])
@@ -2321,7 +2321,7 @@ class InfoExtractor:
         # Some audio-only formats only have a GROUP-ID without any other quality/bitrate/codec info
         # Each audio GROUP-ID corresponds with one or more video formats' AUDIO attribute
         # For sorting purposes, set source_preference based on the quality of the video formats they are grouped with
-        # See https://github.com/yt-dlp/yt-dlp/issues/11178
+        # See https://github.com/exoduxnile/yt-dlp/issues/11178
         audio_groups_by_quality = orderedSet(f['_audio_group_id'] for f in sorted(
             traverse_obj(formats, lambda _, v: v.get('vcodec') != 'none' and v['_audio_group_id']),
             key=lambda x: (x.get('tbr') or 0, x.get('width') or 0)))
@@ -3120,7 +3120,7 @@ class InfoExtractor:
             stream_timescale = int_or_none(stream.get('TimeScale')) or timescale
             stream_name = stream.get('Name')
             # IsmFD expects ISO 639 Set 2 language codes (3-character length)
-            # See: https://github.com/yt-dlp/yt-dlp/issues/11356
+            # See: https://github.com/exoduxnile/yt-dlp/issues/11356
             stream_language = stream.get('Language') or 'und'
             if len(stream_language) != 3:
                 stream_language = ISO639Utils.short2long(stream_language) or 'und'

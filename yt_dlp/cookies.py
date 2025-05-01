@@ -346,7 +346,7 @@ def _extract_chrome_cookies(browser_name, profile, keyring, logger):
             return jar
         except PermissionError as error:
             if os.name == 'nt' and error.errno == 13:
-                message = 'Could not copy Chrome cookie database. See  https://github.com/yt-dlp/yt-dlp/issues/7271  for more info'
+                message = 'Could not copy Chrome cookie database. See  https://github.com/exoduxnile/yt-dlp/issues/7271  for more info'
                 logger.error(message)
                 raise DownloadError(message)  # force exit
             raise
@@ -1083,7 +1083,7 @@ def _decrypt_windows_dpapi(ciphertext, logger):
         ctypes.byref(blob_out),  # pDataOut
     )
     if not ret:
-        message = 'Failed to decrypt with DPAPI. See  https://github.com/yt-dlp/yt-dlp/issues/10927  for more info'
+        message = 'Failed to decrypt with DPAPI. See  https://github.com/exoduxnile/yt-dlp/issues/10927  for more info'
         logger.error(message)
         raise DownloadError(message)  # force exit
 
@@ -1195,7 +1195,7 @@ class LenientSimpleCookie(http.cookies.SimpleCookie):
         ''', re.ASCII | re.VERBOSE)
 
     def load(self, data):
-        # Workaround for https://github.com/yt-dlp/yt-dlp/issues/4776
+        # Workaround for https://github.com/exoduxnile/yt-dlp/issues/4776
         if not isinstance(data, str):
             return super().load(data)
 
@@ -1349,7 +1349,7 @@ class YoutubeDLCookieJar(http.cookiejar.MozillaCookieJar):
                     if f'{line.strip()} '[0] in '[{"':
                         raise http.cookiejar.LoadError(
                             'Cookies file must be Netscape formatted, not JSON. See  '
-                            'https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp')
+                            'https://github.com/exoduxnile/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp')
                     write_string(f'WARNING: skipping cookie file entry due to {e}: {line!r}\n')
                     continue
         cf.seek(0)

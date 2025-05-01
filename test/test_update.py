@@ -30,13 +30,13 @@ TEST_API_DATA = {
         'tag_name': '2023.12.31.123456',
         'target_commitish': 'master',
         'name': 'yt-dlp nightly 2023.12.31.123456',
-        'body': 'Generated from: https://github.com/yt-dlp/yt-dlp/commit/cccccccccccccccccccccccccccccccccccccccc',
+        'body': 'Generated from: https://github.com/exoduxnile/yt-dlp/commit/cccccccccccccccccccccccccccccccccccccccc',
     },
     'yt-dlp/yt-dlp-master-builds/latest': {
         'tag_name': '2023.12.31.987654',
         'target_commitish': 'master',
         'name': 'yt-dlp master 2023.12.31.987654',
-        'body': 'Generated from: https://github.com/yt-dlp/yt-dlp/commit/dddddddddddddddddddddddddddddddddddddddd',
+        'body': 'Generated from: https://github.com/exoduxnile/yt-dlp/commit/dddddddddddddddddddddddddddddddddddddddd',
     },
     'yt-dlp/yt-dlp/tags/testing': {
         'tag_name': 'testing',
@@ -72,7 +72,7 @@ TEST_API_DATA = {
         'tag_name': 'pr987',
         'target_commitish': 'master',
         'name': 'pr987',
-        'body': 'Generated from: https://github.com/yt-dlp/yt-dlp/commit/2222222222222222222222222222222222222222',
+        'body': 'Generated from: https://github.com/exoduxnile/yt-dlp/commit/2222222222222222222222222222222222222222',
     },
 }
 

@@ -146,7 +146,7 @@ class IwaraIE(IwaraBaseIE):
         up = urllib.parse.urlparse(fileurl)
         q = urllib.parse.parse_qs(up.query)
         paths = up.path.rstrip('/').split('/')
-        # https://github.com/yt-dlp/yt-dlp/issues/6549#issuecomment-1473771047
+        # https://github.com/exoduxnile/yt-dlp/issues/6549#issuecomment-1473771047
         x_version = hashlib.sha1('_'.join((paths[-1], q['expires'][0], '5nFp9kmbNnHdAFhaqMvt')).encode()).hexdigest()
 
         preference = qualities(['preview', '360', '540', 'Source'])

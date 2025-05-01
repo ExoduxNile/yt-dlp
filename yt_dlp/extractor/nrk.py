@@ -66,7 +66,7 @@ class NRKBaseIE(InfoExtractor):
             urljoin('https://psapi.nrk.no/', path),
             video_id, note or f'Downloading {item} JSON',
             fatal=fatal, query=query, headers={
-                # Needed for working stream URLs, see https://github.com/yt-dlp/yt-dlp/issues/12192
+                # Needed for working stream URLs, see https://github.com/exoduxnile/yt-dlp/issues/12192
                 'Accept': 'application/vnd.nrk.psapi+json; version=9; player=tv-player; device=player-core',
             })
 

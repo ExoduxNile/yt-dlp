@@ -69,7 +69,7 @@ from ...utils import (
 
 STREAMING_DATA_CLIENT_NAME = '__yt_dlp_client'
 STREAMING_DATA_INITIAL_PO_TOKEN = '__yt_dlp_po_token'
-PO_TOKEN_GUIDE_URL = 'https://github.com/yt-dlp/yt-dlp/wiki/PO-Token-Guide'
+PO_TOKEN_GUIDE_URL = 'https://github.com/exoduxnile/yt-dlp/wiki/PO-Token-Guide'
 
 
 class YoutubeIE(YoutubeBaseInfoExtractor):
@@ -382,7 +382,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                 'format': '141/bestaudio[ext=m4a]',
             },
         },
-        # Age-gate videos. See https://github.com/yt-dlp/yt-dlp/pull/575#issuecomment-888837000
+        # Age-gate videos. See https://github.com/exoduxnile/yt-dlp/pull/575#issuecomment-888837000
         {
             'note': 'Embed allowed age-gate video; works with web_embedded',
             'url': 'https://youtube.com/watch?v=HtVdAasjOgU',
@@ -2403,7 +2403,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
     @classmethod
     def _extract_from_webpage(cls, url, webpage):
         # Invidious Instances
-        # https://github.com/yt-dlp/yt-dlp/issues/195
+        # https://github.com/exoduxnile/yt-dlp/issues/195
         # https://github.com/iv-org/invidious/pull/1730
         mobj = re.search(
             r'<link rel="alternate" href="(?P<url>https://www\.youtube\.com/watch\?v=[0-9A-Za-z_-]{11})"',
@@ -2615,11 +2615,11 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                 if comment.get('is_pinned'):
                     tracker['pinned_comment_ids'].add(comment_id)
                 # Sometimes YouTube may break and give us infinite looping comments.
-                # See: https://github.com/yt-dlp/yt-dlp/issues/6290
+                # See: https://github.com/exoduxnile/yt-dlp/issues/6290
                 if comment_id in tracker['seen_comment_ids']:
                     if comment_id in tracker['pinned_comment_ids'] and not comment.get('is_pinned'):
                         # Pinned comments may appear a second time in newest first sort
-                        # See: https://github.com/yt-dlp/yt-dlp/issues/6712
+                        # See: https://github.com/exoduxnile/yt-dlp/issues/6712
                         continue
                     self.report_warning(
                         'Detected YouTube comments looping. Stopping comment extraction '
@@ -2713,7 +2713,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             except ExtractorError as e:
                 # Ignore incomplete data error for replies if retries didn't work.
                 # This is to allow any other parent comments and comment threads to be downloaded.
-                # See: https://github.com/yt-dlp/yt-dlp/issues/4669
+                # See: https://github.com/exoduxnile/yt-dlp/issues/4669
                 if 'incomplete data' in str(e).lower() and parent:
                     if self.get_param('ignoreerrors') in (True, 'only_download'):
                         self.report_warning(
@@ -2998,7 +2998,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             # Android player_response does not have microFormats which are needed for
             # extraction of some data. So we return the initial_pr with formats
             # stripped out even if not requested by the user
-            # See: https://github.com/yt-dlp/yt-dlp/issues/501
+            # See: https://github.com/exoduxnile/yt-dlp/issues/501
             prs.append({**initial_pr, 'streamingData': None})
 
         all_clients = set(clients)
@@ -3228,7 +3228,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                     msg += (
                         f'{"Your account" if self.is_authenticated else "The current session"} may have '
                         f'an experiment that applies DRM to all videos on the tv client. '
-                        f'See  https://github.com/yt-dlp/yt-dlp/issues/12563  for more details.'
+                        f'See  https://github.com/exoduxnile/yt-dlp/issues/12563  for more details.'
                     )
                 self.report_warning(msg, video_id, only_once=True)
 
@@ -3246,7 +3246,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                             f'YouTube may have enabled the SABR-only or Server-Side Ad Placement experiment for '
                             f'{"your account" if self.is_authenticated else "the current session"}. '
                         )
-                    msg += 'See  https://github.com/yt-dlp/yt-dlp/issues/12482  for more details'
+                    msg += 'See  https://github.com/exoduxnile/yt-dlp/issues/12482  for more details'
                     self.report_warning(msg, video_id, only_once=True)
                     continue
                 try:
@@ -3284,7 +3284,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             tbr = float_or_none(fmt.get('averageBitrate') or fmt.get('bitrate'), 1000)
             format_duration = traverse_obj(fmt, ('approxDurationMs', {float_or_none(scale=1000)}))
             # Some formats may have much smaller duration than others (possibly damaged during encoding)
-            # E.g. 2-nOtRESiUc Ref: https://github.com/yt-dlp/yt-dlp/issues/2823
+            # E.g. 2-nOtRESiUc Ref: https://github.com/exoduxnile/yt-dlp/issues/2823
             # Make sure to avoid false positives with small duration differences.
             # E.g. __2ABJjxzNo, ySuUZEjARPY
             is_damaged = try_call(lambda: format_duration < duration // 2)
@@ -3321,7 +3321,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                     is_damaged and 'DAMAGED', require_po_token and 'MISSING POT',
                     (self.get_param('verbose') or all_formats) and short_client_name(client_name),
                     delim=', '),
-                # Format 22 is likely to be damaged. See https://github.com/yt-dlp/yt-dlp/issues/3372
+                # Format 22 is likely to be damaged. See https://github.com/exoduxnile/yt-dlp/issues/3372
                 'source_preference': (-5 if itag == '22' else -1) + (100 if 'Premium' in name else 0),
                 'fps': fps if fps > 1 else None,  # For some formats, fps is wrongly returned as 1
                 'audio_channels': fmt.get('audioChannels'),
@@ -3663,7 +3663,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                         f'{remove_end(reason.strip(), ".")}. {"Your account" if self.is_authenticated else "The current session"} '
                         f'has been rate-limited by YouTube for up to an hour. It is recommended to use `-t sleep` to add a delay '
                         f'between video requests to avoid exceeding the rate limit. For more information, refer to  '
-                        f'https://github.com/yt-dlp/yt-dlp/wiki/Extractors#this-content-isnt-available-try-again-later'
+                        f'https://github.com/exoduxnile/yt-dlp/wiki/Extractors#this-content-isnt-available-try-again-later'
                     )
                 self.raise_no_formats(reason, expected=True)
 
@@ -3693,7 +3693,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
         original_thumbnails = thumbnails.copy()
 
         # The best resolution thumbnails sometimes does not appear in the webpage
-        # See: https://github.com/yt-dlp/yt-dlp/issues/340
+        # See: https://github.com/exoduxnile/yt-dlp/issues/340
         # List of possible thumbnails - Ref: <https://stackoverflow.com/a/20542029>
         thumbnail_names = [
             # While the *1,*2,*3 thumbnails are just below their corresponding "*default" variants
@@ -4057,7 +4057,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
         # In the case we cannot get the timestamp:
         # The upload date for scheduled, live and past live streams / premieres in microformats
         # may be different from the stream date. Although not in UTC, we will prefer it in this case.
-        # See: https://github.com/yt-dlp/yt-dlp/pull/2223#issuecomment-1008485139
+        # See: https://github.com/exoduxnile/yt-dlp/pull/2223#issuecomment-1008485139
         if not upload_date or (not timestamp and live_status in ('not_live', None)):
             # this should be in UTC, as configured in the cookie/client context
             upload_date = strftime_or_none(
